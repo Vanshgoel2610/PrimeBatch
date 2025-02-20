@@ -16,9 +16,9 @@ data.forEach((ele) => {
     `
     root.appendChild(newCard)
     newCard.addEventListener("click", () => {
-        console.log("He")
+        console.log("div")
         newCard.style.backgroundColor = getRandomColor();
-    })
+    }, false)
 })
 
 const handleBgChange = () => {
@@ -35,7 +35,9 @@ const getRandomColor = () => {
 
 const textElements = document.querySelectorAll('.text')
 textElements.forEach((ele) => {
-    ele.addEventListener("click", () => {
+    ele.addEventListener("click", (event) => {
+        console.log("p")
+        event.stopPropagation()
         ele.style.color = getRandomColor()
     })
 })
