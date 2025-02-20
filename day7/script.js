@@ -17,6 +17,15 @@ data.forEach((ele) => {
     root.appendChild(newCard)
 })
 
-const handleBgChange = () {
+const handleBgChange = () => {
     console.log("btn clicked")
+    const bodyElem = document.querySelector('body')
+    bodyElem.style.backgroundColor = getRandomColor()
+}
+
+const getRandomColor = () => {
+    const randomRed = Math.floor(Math.random()*255);
+    const randomGreen = Math.floor(Math.random()*255);
+    const randomBlue = Math.floor(Math.random()*255);
+    return `rgb(${randomRed}, ${randomGreen}, ${randomBlue})`
 }
