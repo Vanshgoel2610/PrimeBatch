@@ -12,9 +12,13 @@ data.forEach((ele) => {
     newCard.innerHTML = `
     <h4>${ele.name}</h4>
     <h6>${ele.city}</h6>
-    <p>${ele.email}</p>
+    <p class='text'>${ele.email}</p>
     `
     root.appendChild(newCard)
+    newCard.addEventListener("click", () => {
+        console.log("He")
+        newCard.style.backgroundColor = getRandomColor();
+    })
 })
 
 const handleBgChange = () => {
@@ -28,3 +32,10 @@ const getRandomColor = () => {
     const randomBlue = Math.floor(Math.random()*255);
     return `rgb(${randomRed}, ${randomGreen}, ${randomBlue})`
 }
+
+const textElements = document.querySelectorAll('.text')
+textElements.forEach((ele) => {
+    ele.addEventListener("click", () => {
+        ele.style.color = getRandomColor()
+    })
+})
