@@ -18,7 +18,6 @@ data.forEach((ele) => {
 })
 
 const handleBgChange = () => {
-    console.log("btn clicked")
     const bodyElem = document.querySelector('body')
     bodyElem.style.backgroundColor = getRandomColor()
 }
