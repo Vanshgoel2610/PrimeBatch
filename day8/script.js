@@ -18,8 +18,8 @@ const data = [
 
 const root = document.getElementById('root')
 
-const showCards = () => {
-    data.forEach((ele) => {
+const showCards = (newData) => {
+    newData.forEach((ele) => {
         const card = document.createElement('div');
         card.className = "card"
         card.innerHTML = `
@@ -33,7 +33,6 @@ const showCards = () => {
         root.appendChild(card)
     })
 }
-showCards()
 const deleteCard = (event) => {
     event.target.parentElement.parentElement.remove()
 }
@@ -43,4 +42,7 @@ const handleSelect = (e) => {
         if(ele.city === selectedCity) return true;
         return false;
     })
+    showCards(newData)
 }
+
+showCards(data)
