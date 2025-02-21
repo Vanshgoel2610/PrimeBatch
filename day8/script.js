@@ -30,11 +30,17 @@ const showCards = () => {
 
         </div>
         `
-        div.style.visi
         root.appendChild(card)
     })
 }
 showCards()
 const deleteCard = (event) => {
     event.target.parentElement.parentElement.remove()
+}
+const handleSelect = (e) => {
+    const selectedCity = e.target.value;
+    const newData = data.filter((ele) => {
+        if(ele.city === selectedCity) return true;
+        return false;
+    })
 }
