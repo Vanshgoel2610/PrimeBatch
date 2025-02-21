@@ -19,6 +19,7 @@ const data = [
 const root = document.getElementById('root')
 
 const showCards = (newData) => {
+    root.innerHTML = ""
     newData.forEach((ele) => {
         const card = document.createElement('div');
         card.className = "card"
