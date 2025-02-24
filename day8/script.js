@@ -1,104 +1,114 @@
 const data = [
     {
-        id: '1',
+        email: "rakesh@gmail.com",
         name: "Rakesh",
-        city: "Delhi"
+        city: "Delhi",
     },
     {
-        id: '2',
+        email: "mohan@gmail.com",
         name: "Mohan",
-        city: "Noida"
+        city: "Noida",
     },
     {
-        id: '3',
+        email: "rishabh@gmail.com",
         name: "Rishabh",
-        city: "Mumbai"
+        city: "Mumbai",
     },
     {
-        id: '4',
-        name: "Raj",
-        city: "Delhi"
+        email: "ramesh@gmail.com",
+        name: "Ramesh",
+        city: "Delhi",
     },
 ];
 
-// const cities = data.map((elem) => elem.city)
-// const selectElement = document.getElementsByTagName("select")[0]
-
-const citiesObj = {}
-data.forEach((ele) => citiesObj[ele.city] = true)
-const cities = Object.keys(citiesObj)
+const root = document.getElementById("root");
+const selectElement = document.getElementsByTagName("select")[0];
 
 const showOptions = () => {
-    cities.forEach((city) => {
-        const newOption = document.createElement('option')
-        newOption.value = city
-        newOption.innerText = city
-        selectElement.appendChild(newOption)
-    })
-}
+    selectElement.innerHTML = "";
 
-const root = document.getElementById('root')
+    const citiesObj = {};
+    data.forEach((elem) => (citiesObj[elem.city] = true));
+    const cities = Object.keys(citiesObj);
+
+    cities.forEach((city) => {
+        const newOption = document.createElement("option");
+        newOption.value = city;
+        newOption.innerText = city;
+        selectElement.appendChild(newOption);
+    });
+};
 
 const showCards = (newData) => {
-    root.innerHTML = ""
-    newData.forEach((ele, idx) => {
-        const card = document.createElement('div');
-        card.className = "card"
+    showOptions();
+
+    root.innerHTML = "";
+    newData.forEach((elem, idx) => {
+        const card = document.createElement("div");
+        card.className = "card";
         card.innerHTML = `
-        <div>
-            <h1>${ele.name}</h1>
-            <p>${ele.city}</p>
-            <button onClick = "deleteCard(event, '${ele.id}')">Delete</button>
+            <h4>${elem.name}</h4>
+            <p>${elem.city}</p>
+            <button onClick="deleteCard(event, '${elem.email}')">Delete</button>
+        `;
+        root.appendChild(card);
+    });
+};
 
-        </div>
-        `
-        root.appendChild(card)
-    })
-}
-const deleteCard = (event, idx) => {
-    // One way to delete
-    // event.target.parentElement.parentElement.remove()
+const deleteCard = (e, elemEmail) => {
+    // console.log(e.target.parentElement);
+    // e.target.remove();
+    // -- one way to delete
+    // e.target.parentElement.remove();
+    // -- another way to delete
+    // console.log(e, idx);
+    // data.splice(idx, 1);
+    // showCards(data);
+    // -- correct way
+    const index = data.findIndex((elem) => elem.email == elemEmail);
+    data.splice(index, 1);
+    showCards(data);
+};
 
-    // Another way to delete
-    // data.splice(idx, 1)
-    // showCards(data)
-
-    // Correct way to delete
-    const index = data.findIndex((ele) => ele.id === idx)
-    data.splice(index, 1)
-    showCards(data)
-}
 const handleSelect = (e) => {
     const selectedCity = e.target.value;
-    const newData = data.filter((ele) => {
-        if(ele.city === selectedCity) return true;
+    const newData = data.filter((elem) => {
+        if (elem.city === selectedCity) return true;
         return false;
-    })
-    showCards(newData)
-}
+    });
+    showCards(newData);
+};
+
 const handleFormSubmit = (e) => {
-    e.preventDefault()
-    // console.log(e)
-    // console.log(e.target.email.value)
-    // console.log(e.target.email.value)
-    // console.log(e.target[0].value)
-    // console.log(e.target[1].value)
-    // console.log(e.target.fullName)
+    e.preventDefault();
+    // console.log(e);
+    // console.log(e.target.email.value);
+    // console.log(e.target[0].value);
+    // console.log(e.target.fullName.value);
+    // console.log(e.target[1].value);
+    // console.log(e.target.city.value);
+    // console.log(e.target[2].value);
+
+    // add the data
 
     const isEmailExists = data.some((elem) => {
-        return elem.email === e.target.email.value
-    })
-    if(isEmailExists) {
-        alert("Already Exists")
-        return
-    }
-    const newElement = {
-        name: e.target.fullName.value,
-        name: e.target.email.value,
-        name: e.target.city.value,
-    }
-    data.push(newElement)
-    showCards(data)
-}
+        return elem.email === e.target.email.value;
+    });
 
-showCards(data)
+    if (isEmailExists) {
+        alert("Email already exists");
+
+        return;
+    }
+
+    const newElem = {
+        name: e.target.fullName.value,
+        email: e.target.email.value,
+        city: e.target.city.value,
+    };
+
+    data.push(newElem);
+    showCards(data);
+};
+
+showCards(data);
