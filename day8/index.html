@@ -7,6 +7,12 @@
     <link rel = "stylesheet" href = "style.css">
 </head>
 <body>
+    <form onsubmit="handleFormSubmit(event)">
+        <input type = "email" placeholder="email" name = "email" required>
+        <input type = "text" placeholder="name" name = 'fullName' required>
+        <input type = "text" placeholder="city" name = "city" required>
+        <button>Add</button>
+    </form>
     <select onchange="handleSelect(event)">
         <option value = "Delhi">Delhi</option>
         <option value = 'Noida'>Noida</option>
