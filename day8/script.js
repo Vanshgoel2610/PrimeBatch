@@ -29,6 +29,7 @@ const showOptions = () => {
 
     const citiesObj = {};
     data.forEach((elem) => (citiesObj[elem.city] = true));
+    console.log(citiesObj);
     const cities = Object.keys(citiesObj);
 
     cities.forEach((city) => {

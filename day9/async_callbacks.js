@@ -227,9 +227,11 @@ const getData = (e) => {
     console.log(pr);
     pr.then((a) => {
         const pr2 = a.json();
+        console.log(pr2)
         pr2.then((data) => {
             // console.log("data", data);
             showUI(data);
+            storeData(data);
         });
     }).catch((b) => {
         console.log("b", b);
@@ -251,8 +253,6 @@ function showUI(data) {
         <a href=${html_url}>View Profile</a>
     `;
     root.appendChild(newCard);
-
-    storeData(data);
 }
 
 function storeData(data) {
